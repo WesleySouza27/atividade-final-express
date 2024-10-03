@@ -1,25 +1,17 @@
 ### atividade final de modulo back end 1
-<!-- # API de Usuários e Recados
+## api de recados (CRUD)
 
-Esta API permite o gerenciamento de usuários e recados. Inclui funcionalidades para criação de usuários, login, criação de recados e operações CRUD em recados.
+# Funcionalidades
+1. Signup : criação de usuários
+2. Login : Login de usuários.
+3. Crud de recados : Criar, ler, atualizar e excluir recados.
 
-## Funcionalidades
+# Tcnologias utilizadas
+1. Node.js
+2. Express.js
+3. UUID para geração de identificadores únicos.
+4. Bcrypt para hash de senhas.
+5. CORS para controle de acesso.
 
-- **Sign Up**: Criação de usuários.
-- **Login**: Login de usuários.
-- **CRUD de Recados**: Criar, ler, atualizar e excluir recados.
-
-## Tecnologias Utilizadas
-
-- Node.js
-- Express
-- UUID para geração de identificadores únicos.
-- Bcrypt para hash de senhas.
-- CORS para controle de acesso.
-
-## Instalação
-
-1. Clone o repositório:
-
-   ```bash
-   git clone https://github.com/WesleySouza27/atividade-final-express/tree/main -->
+# Instalação 
+1. clone o repositório: 
