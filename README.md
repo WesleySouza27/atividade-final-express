@@ -1,5 +1,5 @@
 ### atividade final de modulo back end 1
-# API de Usuários e Recados
+<!-- # API de Usuários e Recados
 
 Esta API permite o gerenciamento de usuários e recados. Inclui funcionalidades para criação de usuários, login, criação de recados e operações CRUD em recados.
 
@@ -22,4 +22,4 @@ Esta API permite o gerenciamento de usuários e recados. Inclui funcionalidades 
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/WesleySouza27/atividade-final-express/tree/main
+   git clone https://github.com/WesleySouza27/atividade-final-express/tree/main -->
