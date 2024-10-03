@@ -1,0 +1,21 @@
+{
+  "name": "atividade-final-express",
+  "version": "1.0.0",
+  "description": "trabalho final de modulo express",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index"
+  },
+  "author": "wesley souza",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "sucrase": "^3.35.0"
+  }
+}
