@@ -15,7 +15,7 @@ app.use(express.json())
 
 app.use('/users', userRouter)
 app.use('/notes', notesRouter)
-app.use('/welcome', welcomeRouter)
+app.use('/', welcomeRouter)
 
 app.listen(PORT, () => {
     console.log(`servidor rodando na porta ${PORT}`)
