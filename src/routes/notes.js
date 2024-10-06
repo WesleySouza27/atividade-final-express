@@ -58,6 +58,7 @@ router.put('/message/:id', validationUpdate, (req, res) => {
 // Deletar mensagens
 router.delete('/message/:id', validationDelete, (req, res) => {
     const { id } = req.params
+    const messageIndex = messages.findIndex(note => note.id === id)
     const deletedNote = messages.splice(messageIndex, 1)
 
     return res.status(200).json({

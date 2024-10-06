@@ -15,6 +15,7 @@ export function validationCreate(req, res, next) {
     if (!description) {
         return res.status(400).json({error: "Descrição é obrigatório!"})
     }
+    next()
 }
 
 export function validationReadme(req, res, next) {
@@ -26,6 +27,7 @@ export function validationReadme(req, res, next) {
             message: "Email não encontrado, verifique ou crie uma conta"
         })
     }
+    next()
 }
 
 export function validationUpdate(req, res, next) {
@@ -47,6 +49,8 @@ export function validationUpdate(req, res, next) {
 
     messages[messageIndex].title = title
     messages[messageIndex].description = description
+
+    next()
 }
 
 export function validationDelete(req, res, next) {
@@ -56,4 +60,5 @@ export function validationDelete(req, res, next) {
     if (messageIndex === -1) {
         return res.status(404).json({error: 'Recado não encontrado'})
     }
+    next()
 }
