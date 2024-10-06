@@ -2,29 +2,15 @@ import express, { request, response } from 'express'
 import { v4 as uuidv4 } from 'uuid'
 import { users } from './users'
 
+import { validationCreate, validationReadme, validationUpdate, validationDelete} from '../middleware/validationNotes'
+
 const router = express.Router()
-const messages = []
+export const messages = []
 
 
 // Criar mensagem - Create
-router.post('/message', (req, res) => {
+router.post('/message', validationCreate, (req, res) => {
     const { email, title, description,} = req.body
-    const existingUser = users.find(user => user.email === email)
-    // const user = users.find(user => user.id === userId)
-
-    if (!existingUser) {
-        return res.status(404).json({error: "Email não encontrado, verifique ou crie uma conta"})
-    }
-    // if (!user) {
-    //     return res.status(404).json({error: "userId não encontrado!"})
-    // }
-
-    if (!title) {
-        return res.status(400).json({error: "Título é obrigatório!"})
-    }
-    if (!description) {
-        return res.status(400).json({error: "Descrição é obrigatório!"})
-    }
 
     const newMessage = {
         id: uuidv4(),
@@ -41,15 +27,10 @@ router.post('/message', (req, res) => {
 
 
 // Ler mensagem - Create
-router.get('/message/:email', (req, res) => {
+router.get('/message/:email', validationReadme, (req, res) => {
     const { email } = req.params 
     const existingUser = users.find(user => user.email === email)
 
-    if (!existingUser) {
-        return res.status(404).json({
-            message: "Email não encontrado, verifique ou crie uma conta"
-        })
-    }
     const filteredMessages = messages.filter(message => message.email === email)
 
     return res.status(200).json({
@@ -62,26 +43,10 @@ router.get('/message/:email', (req, res) => {
 
 
 // Atualizar menssagem 
-router.put('/message/:id', (req, res) => {
+router.put('/message/:id', validationUpdate, (req, res) => {
     const { title, description } = req.body
     const { id } = req.params
     const messageIndex = messages.findIndex(note => note.id === id)
-
-    if (messageIndex === -1) {
-        return res.status(404).json({
-            error: " Por favor, informe um id válido da mensagem"
-        })
-    }
-
-
-    if (!title || !description) {
-        return res.status(400).json({
-            error: 'titulo e descrição são obrigatórios.'})
-    }
-
-    
-    messages[messageIndex].title = title
-    messages[messageIndex].description = description
 
     return res.status(200).json({
         message: `Mensagem atualizada com sucesso!`,
@@ -91,14 +56,8 @@ router.put('/message/:id', (req, res) => {
 
 
 // Deletar mensagens
-router.delete('/message/:id', (req, res) => {
+router.delete('/message/:id', validationDelete, (req, res) => {
     const { id } = req.params
-    const messageIndex = messages.findIndex(note => note.id === id)
-    
-    if (messageIndex === -1) {
-        return res.status(404).json({error: 'Recado não encontrado'})
-    }
-
     const deletedNote = messages.splice(messageIndex, 1)
 
     return res.status(200).json({

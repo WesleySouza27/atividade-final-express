@@ -29,14 +29,16 @@ export function validateUserLogin(req, res, next) {
         return res.status(400).json({error: "Insira um e-mail válido"})
     }
 
+    if (!password) {
+        return res.status(400).json({error: "Insira uma senha válida"})
+    }
+    
     const existingUser = users.find(user => user.email === email)
     if (!existingUser) {
         return res.status(400).json({error: "Email não encontrado no sistema, verifique ou crie uma conta"})
     }
 
-    if (!password) {
-        return res.status(400).json({error: "Insira uma senha válida"})
-    }
+    
 
     next()
 }
