@@ -17,7 +17,6 @@ router.post('/message', validationCreate, (req, res) => {
         title,
         description,
         email
-        // userId
     }
 
     messages.push(newMessage)
