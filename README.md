@@ -15,3 +15,6 @@
 
 # Instalação 
 1. clone o repositório: 
+2. git@github.com:WesleySouza27/atividade-final-express.git
+3. npm install : para instalar as dependências
+4. npm start  : para rodar o servidor local
