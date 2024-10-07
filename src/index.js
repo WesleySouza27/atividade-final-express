@@ -13,8 +13,8 @@ const PORT = 5500
 app.use(cors())
 app.use(express.json())
 
-app.use('/users', userRouter)
-app.use('/notes', notesRouter)
+app.use('/', userRouter)
+app.use('/', notesRouter)
 app.use('/', welcomeRouter)
 
 app.listen(PORT, () => {
