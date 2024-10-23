@@ -43,6 +43,7 @@ router.post('/message', validationCreate, (req, res) => {
 router.get('/message/:email', (req, res) => {
     const { email } = req.params 
     
+    //https://atividade-final-express.onrender.com/message/maria@example.com?page=2&perPage=3
     const { page, perPage} = req.query
 
     const user = users.find(user => user.email === email)
@@ -54,15 +55,23 @@ router.get('/message/:email', (req, res) => {
     const currentPage = parseInt(page) || 1
     const itensPerPage = parseInt(perPage) || 10
 
-    const userNotes = notes.filter(note => note.email === email)
+    const userNotes = messages.filter(note => note.email === email)
 
     const totalItens = userNotes.length
 
     const startIndex = (currentPage - 1) * itensPerPage
     const endIndex = startIndex + itensPerPage
 
+    if (startIndex >= totalItens) {
+        return res.status(200).json({
+            notes: [],
+            message: 'Página solicitada não contém itens.',
+            totalPages: Math.ceil(totalItens / itensPerPage),
+            currentPage
+        });
+    }
+    
     const paginatedNotes = userNotes.slice(startIndex, endIndex)
-
     const totalPages = Math.ceil(totalItens / itensPerPage)
 
     res.status(200).json({
