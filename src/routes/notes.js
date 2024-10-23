@@ -26,18 +26,50 @@ router.post('/message', validationCreate, (req, res) => {
 
 
 // Ler mensagem - Create
-router.get('/message/:email', validationReadme, (req, res) => {
+// router.get('/message/:email', validationReadme, (req, res) => {
+//     const { email } = req.params 
+//     const existingUser = users.find(user => user.email === email)
+
+//     const filteredMessages = messages.filter(message => message.email === email)
+
+//     return res.status(200).json({
+//         message: `Seja bem-vinde!`,
+//         messages: filteredMessages.map(message => 
+//             `ID: ${message.id}, Título: ${message.title}, Descrição: ${message.description}`).join(' || ')
+//     });
+
+// })
+
+router.get('/message/:email', (req, res) => {
     const { email } = req.params 
-    const existingUser = users.find(user => user.email === email)
+    
+    const { page, perPage} = req.query
 
-    const filteredMessages = messages.filter(message => message.email === email)
+    const user = users.find(user => user.email === email)
 
-    return res.status(200).json({
-        message: `Seja bem-vinde!`,
-        messages: filteredMessages.map(message => 
-            `ID: ${message.id}, Título: ${message.title}, Descrição: ${message.description}`).join(' || ')
-    });
+    if (!user) {
+        return res.status(404).json({message: 'usuário não encontrado.'})
+    }
 
+    const currentPage = parseInt(page) || 1
+    const itensPerPage = parseInt(perPage) || 10
+
+    const userNotes = notes.filter(note => note.email === email)
+
+    const totalItens = userNotes.length
+
+    const startIndex = (currentPage - 1) * itensPerPage
+    const endIndex = startIndex + itensPerPage
+
+    const paginatedNotes = userNotes.slice(startIndex, endIndex)
+
+    const totalPages = Math.ceil(totalItens / itensPerPage)
+
+    res.status(200).json({
+        notes: paginatedNotes, 
+        totalPages, 
+        currentPage
+    })
 })
 
 
