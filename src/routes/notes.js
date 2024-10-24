@@ -40,6 +40,8 @@ router.post('/message', validationCreate, (req, res) => {
 
 // })
 
+
+// paginação no back-end
 router.get('/message/:email', (req, res) => {
     const { email } = req.params 
     
