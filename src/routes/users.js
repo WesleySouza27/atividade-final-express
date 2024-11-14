@@ -41,7 +41,7 @@ router.post('/login', validateUserLogin, async (req, res) => {
         return res.status(400).json({error: "Senha incorreta, tente novamente"})
     }
 
-    return res.status(200).json({message: ` Seja bem vindo ${ existingUser.name} ! Pessoa usuária logada com sucesso!`, data: (email, password)})
+    return res.status(200).json({message: ` Seja bem vindo ${ existingUser.name} ! Pessoa usuária logada com sucesso!`, data: (existingUser.email)})
 })
 
 export default router
