@@ -25,7 +25,7 @@ router.post('/signup', validateUserRegistration, async (req, res) => {
 
     users.push(newUser)
 
-    return res.status(201).json({message: `Seja bem vindo ${ name } ! Pessoa usuária registrada com sucesso!`})
+    return res.status(201).json({message: `Seja bem vindo ${ name } ! Pessoa usuária registrada com sucesso!`, data: (newUser)})
 
 })
 
@@ -41,7 +41,7 @@ router.post('/login', validateUserLogin, async (req, res) => {
         return res.status(400).json({error: "Senha incorreta, tente novamente"})
     }
 
-    return res.status(200).json({message: ` Seja bem vindo ${ existingUser.name} ! Pessoa usuária logada com sucesso!`})
+    return res.status(200).json({message: ` Seja bem vindo ${ existingUser.name} ! Pessoa usuária logada com sucesso!`, data: (email, password)})
 })
 
 export default router
